@@ -1,5 +1,5 @@
 # Google-Apps-Script-is-your-Buddy
-You can use Google Apps Script to make a unique web application, deployed to a private URL and secured for people behind your private corporate domain. You can also almost any JavaScript framework or Library of your choice (AngularJS, Vue, Mithril, etc.), essentially anything you can add with a <script> tag is something you can use. You can also integrate it with the database of your choice, Firebase, CouchDB, etc. (these are the ones I use). You get a basic version control system and a Web-IDE to edit your code in, although it could use some serious updating.
+You can use Google Apps Script to make a unique web application, deployed to a private URL and secured for people behind your private corporate domain. You can also use almost any JavaScript framework or Library of your choice (AngularJS, Vue, Mithril, etc.), essentially anything you can add with a <script> tag is something you can use. You can also integrate it with the database of your choice, Firebase, CouchDB, etc. (these are the ones I use). You get a basic version control system and a Web-IDE to edit your code in, although it could use some serious updating.
 It is even now possible to integrate git into your workflow and edit files locally if you like.
 
 ## What?
@@ -16,7 +16,6 @@ To make a web app with Google Apps Script, you need to have a *google script* fi
 function doGet() {
   var t = HtmlService.createTemplateFromFile('index');
   return t.evaluate()
-    .setSandboxMode(HtmlService.SandboxMode.IFRAME)
     .setTitle('Single Page Web App');
 }
  
@@ -87,4 +86,16 @@ A minimal AngularJS/Bootstrap 4 application will have these contents in the *js_
 ```
 ### Finally, Publish the Web App
 The next step is to *Publish* the web app and it is really simple. From the command bar select *Publish > Deploy as web app*.
+![publish command](/images/google-apps-script-publish-01.png)
+
 You will be presented with a modal dialog that has a few options:
+![publish modal](/images/google-apps-script-publish-02.png)
+
+If you choose to run the app as *Me*, people would technically have access to *your* Google Drive. Sometimes that is what you want, like in a secured corporate environment, you may want to send emails using your Google credentials. For a publically facing web app, I would not do this, and would choose the second option *User accessing the web app*.
+
+The next dropdown has the options that determine the accessibility of the app. 
+![publish modal](/images/google-apps-script-publish-03.png)
+
+It can be private, like if you wanted to use it for a home iot dashboard interface, this would be a great option. If you want anyone else to see it, the only other option is to allow *Anyone*. I'm not sure what *even Anonymous* means, but it doesn't sound like a secure option so I haven't used it.
+
+You will have to select *New* the first time you deploy it. From there on, it will have a version number and this is where you get some basic version control. The app will have two separate URL's you can access it from, a development one (ending in /dev) and a production one (ending in /exec). When you deploy and change version numbers, users accessing the app from the production endpoint will get your latest code. If you are accessing the app through the development endpoint, any changes you make in the editor are immediately executed and shown.
