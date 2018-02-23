@@ -43,7 +43,8 @@ The index file is identical to any other website you may have made, only it does
     </div>
   </body>
   
-  <?!= include('js_app'); ?>
+  <!-- below is Google Apps Script's way of executing functions that are in the .gs file (called a scriptlet) -->
+  <?!= include('js_app'); ?>  
   
 </html>
 ```
@@ -96,6 +97,13 @@ If you choose to run the app as *Me*, people would technically have access to *y
 The next dropdown has the options that determine the accessibility of the app. 
 ![publish modal](/images/google-apps-script-publish-03.png)
 
-It can be private, like if you wanted to use it for a home iot dashboard interface, this would be a great option. If you want anyone else to see it, the only other option is to allow *Anyone*. I'm not sure what *even Anonymous* means, but it doesn't sound like a secure option so I haven't used it.
+It can be private, like if you wanted to use it for a home iot dashboard interface, this would be a great option. If you want anyone else to see it, the only other option is to allow *Anyone*. I'm not sure what *even anonymous* means, but it doesn't sound like a secure option so I haven't used it. If you are part of a G Suite domain, like at work, you will have one more option: *Anyone at yourdomain.com*. This is the feature I mentioned earlier that I think adds a nice layer of security. Now I don't need to worry about my URL being shared outside my organization, even if somebody did by mistake.
 
 You will have to select *New* the first time you deploy it. From there on, it will have a version number and this is where you get some basic version control. The app will have two separate URL's you can access it from, a development one (ending in /dev) and a production one (ending in /exec). When you deploy and change version numbers, users accessing the app from the production endpoint will get your latest code. If you are accessing the app through the development endpoint, any changes you make in the editor are immediately executed and shown.
+
+### What don't I get, there must be something
+Well, there is. 
+- Any library you want to use must be linked up using `<script>` tags. Typically this means you need to find the library on a CDN. The only other option is to cut and paste the code into the Web IDE, but this can be kind of nasty.
+- The Web IDE does not like JSX. For this reason, React is not an option as far as I can see.
+- When you are routing within your app, you will not see the URL change like a typical web application would. It is still possible to send parameters on the URL route and everything, you just won't see that URL in the address bar. This is because the application is *sandboxed* in an iframe and everything it is doing is inside the sandbox.
+- I wouldn't use it for a real website, if you expect crawlers to index your site and everything. Because it is sandboxed, it is not exactly possible to modify the `<meta>` tags. Anything you put in your index.html file is buried in the sandbox and I don't think it will be found, though I haven't tested this.
