@@ -27,6 +27,8 @@ function include(filename) {
 The *doGet* function must be present for this to work.
 The *include* function is a helper to create .html files that your application will use.
 
+Think of the *doGet* function as your web server; that is really all it is doing. It is serving a file at a url, but instead of being at `http://localhost:3001` or something, it is at another url on a Google server. It's pretty robust too. I haven't had any issues with it like I have with `python -m SimpleHTTPServer 3001` where it requires the occasional restart.
+
 ### Next create the *index.html* file
 The index file is identical to any other website you may have made, only it does not need to be named *index*, it can be anything. Following convention, I like to use index. Your index file will look like this:
 ```html
@@ -89,7 +91,6 @@ If you search the web, you will find people who have written on Stack Overflow a
 - Arrow functions work `(arr.map(v => v + 1)`
 - Operators `let` and `const` work just fine
 - Template Strings DO NOT work
-These are all the ones I have tried but haven't had any issues.
 
 ### Finally, Publish the Web App
 The next step is to *Publish* the web app and it is really simple. From the command bar select *Publish > Deploy as web app*.
@@ -110,9 +111,27 @@ It can be private, like if you wanted to use it for a home iot dashboard interfa
 
 You will have to select *New* the first time you deploy it. From there on, it will have a version number and this is where you get some basic version control. The app will have two separate URL's you can access it from, a development one (ending in /dev) and a production one (ending in /exec). When you deploy and change version numbers, users accessing the app from the production url will get your latest code. If you are accessing the app through the development url, any changes you make in the editor are immediately executed and shown. I wouldn't share the development url.
 
-### What don't I get? There must be something
+### What don't I get? There must be something.
 Well, there is. 
 - Any library you want to use must be linked up using `<script>` tags. Typically this means you need to find the library on a CDN. The only other option is to cut and paste the code into the Web IDE, but this can be kind of nasty.
 - The Web IDE does not work with JSX. For this reason, React is not an option as far as I can see.
 - When you are routing within your app, you will not see the URL change like a typical web application would. It is still possible to send parameters on the URL route and everything, you just won't see that URL in the address bar. This is because the application is *sandboxed* in an iframe and everything it is doing is inside the sandbox.
 - I wouldn't use it for a real website, if you expect crawlers to index your site and everything. Because it is sandboxed, it is not exactly possible to modify the `<meta>` tags. Anything you put in your index.html file is buried in the sandbox and I don't think it will be found, though I haven't tested this.
+
+### No build tools (bundlers, minifiers, linters)?
+No. None of that is needed.
+You can actually build a very functional web application without using bleeding edge technology, meaning the latest build tools (webpack, parcel, etc.). There are some benefits to this. Your code can be updated from anywhere immediately, much quicker than getting your dev environment started, running `npm install` then `npm build` or whatever flavor you like to use. Even though it might run faster if you did this, your application will likely be small enough that it won't be a big knob in terms of startup speed. If you really want to use a build step, you can; you just have to use the *bundle.js* output file as your `js_app.html`.
+
+### What I hope Google Apps Script could become
+While it is very useful for me (in my use case), I think it could be much better and allow more recent technologies. If anybody important might stumble upon this and can effect some change, here is my list:
+- Update the code editor so it uses something like the Monaco editor used by VS Code (also StackBlitz)
+- Make the GUI possible to do builds using a build tool like Webpack or Parcel. I would love to see a GUI that brings us out of the command line and webpack.json file, so it doesn't require day-to-day usage of the tool to be able to remember commands. Make the *loaders* and *plugins* selectable from a list and build my webpack.json file for me.
+- Run this bundled file as my application when I say *Publish as web app*
+- It seems like there should be an opportunity to do Server Side Rendering to make Google Apps Scripts blazing fast applications
+- Don't try to dumb it down and over complicate things, like IBM has done with all it's f'ing modules in IBM Cloud where I have to select all my technologies and connect them through the GUI interface. I'm fine with adding my connection to Firebase exactly as I do today, in my index.html file, which also matches their documentation.
+
+Remember that not everybody that might be using or needing web technologies, is a day-to-day programmer. In fact, I don't even work in IT and to get all these tools installed on my work computer to do such stuff is a pain in the you know what; that is why the Web IDE is awesome.
+
+### Conclusion
+Thanks for reading. This has become something I really enjoy and I hope my writing here will enable somebody to build an application of their own. When I started writing JavaScript 3 years ago, it was to build an application that would help manage my data at work. I didn't know the first thing about making a web application, but I was able to press on and make what I needed. 
+While you don't need to use Google Apps Script to do this, I think it is a great starting point and platform if you should choose to. Give it a shot!
