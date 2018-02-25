@@ -8,7 +8,7 @@ Yes, it's true and many people don't even realize it. When you search for Google
 The company I work for uses G Suite (formerly Google Apps for Work and Google Apps for Your Domain), and this adds an additional neat feature for deploying a Web App behind the corporate domain, where only users on your domain can access it. This doesn't mean you *have* to be using G Suite. Anyone with a Google Account can have a Google App Script and make web apps. It is simply that if you are part of G Suite, you can deploy strictly to users on your domain, a nice security feature.
 
 ## How 
-If you're using Google Apps Script to make a web app, you should really be trying to make a Single Page App or SPA. This way, you do not need to reload the page each time you want to navigate. You will use a library or framework that has routing capability to accomplish this. I have mostly been using AngularJS 1.5+ with the Component Model for my work combined with Angular UI-Router. This will outline the most basic Angular application without routing, and I will add a more complicated example later.
+If you're using Google Apps Script to make a web app, you should really be trying to make a Single Page App or SPA. This way, you do not need to reload the page each time you want to navigate. You will use a library or framework that has routing capability to accomplish this. I have mostly been using AngularJS 1.5+ with the Component Model for my work combined with Angular UI-Router. This will outline the most basic Angular application without routing, and I will add a more complicated example as a Part 2 in the future.
 
 ### Start with a "*.gs*" file
 To make a web app with Google Apps Script, you need to have a *google script* file or .gs file. It will default to *Code.gs* when you first create an Apps Script file. This is where it all starts and you must have some specific functions in here, as they are specific to the Google Apps Script way of producing a web app.
@@ -52,8 +52,8 @@ The index file is identical to any other website you may have made, only it does
 ```
 
 ### Next add your JavaScript
-Now the first thing to realize is, to add JavaScript to your Google Apps Script web app will require you to add another *.html* file and put your code within `<script>` tags. This might seem goofy, and I agree, but everything in Apps Script is an *.html* file and you have to work around that fact.
-So create a new file by going to the command bar: *File > New > Html file*
+Now the first thing to realize is, to add JavaScript to your Google Apps Script web app will require you to add another *.html* file and put your code within `<script>` tags. This might seem goofy, and I agree, but everything in Apps Script is an *.html* file and you have to work around that fact.  So create a new file by going to the command bar: *File > New > Html file*  
+
 Give it a name, and I will give you a hint to a good structure to follow. I like to call it something like *js_app.html*, because later on, when you have a multitude of files, you may want them to be organized by type. The dated Web IDE will allow you to organize the files either by the order they were created, or alphabetically. I prefer this naming convention, then organized alphabetically so I can keep all my *component* files in a logical order.
 
 A minimal AngularJS/Bootstrap 4 application will have these contents in the *js_app.html* file:
@@ -123,7 +123,7 @@ There are a few things you may want to know:
 
 ### No build tools (bundlers, minifiers, linters)?
 No. None of that is needed.
-You can actually build a very functional web application without using bleeding edge technology, meaning the latest build tools (webpack, parcel, etc.). There are some benefits to this. Your code can be updated from anywhere immediately, much quicker than getting your dev environment started, running `npm install` then `npm build` or whatever flavor you like to use. Even though your application might run faster if you did this, it will likely be small enough that it won't be a big knob in terms of startup speed. 
+You can actually build a very functional web application without using bleeding edge technology, meaning the latest build tools (webpack, Parcel, etc.). There are some benefits to this. Your code can be updated from anywhere immediately, much quicker than getting your dev environment started, running `npm install` then `npm build` or whatever flavor you like to use. Even though your application might run faster if you did this, it will likely be small enough that it won't be a big knob in terms of startup speed. 
 If you really want to use a build step, you can; you just have to use the *bundle.js* output file as your `js_app.html`.
 
 ### What I hope Google Apps Script could become
@@ -132,7 +132,7 @@ While it is very useful for me (in my use case), I think it could be much better
 - Make the GUI possible to do builds using a build tool like Webpack or Parcel. I would love to see a GUI that brings us out of the command line and `webpack.config.js` file, so it doesn't require day-to-day usage of the tool to be able to remember commands. Make the *loaders* and *plugins* selectable from a list and build my `webpack.config.js` file for me.
 - Run this bundled file as my application when I say *Publish as web app*
 - It seems like there should be an opportunity to do Server Side Rendering to make Google Apps Scripts blazing fast applications
-- Don't try to dumb it down and over complicate things, like IBM has done with all it's f'ing modules in IBM Cloud where I have to select all my technologies and connect them through the GUI interface. I'm fine with adding my connection to Firebase exactly as I do today, in my index.html file, which also matches their documentation.
+- Don't try to dumb it down and over complicate things, like IBM has done with all their freaking modules in IBM Cloud where I have to select all my technologies and connect them through the GUI interface. I'm fine with adding my connection to Firebase exactly as I do today, in my index.html file, which also matches their documentation.
 
 Remember that not everybody that might be using or needing web technologies, is a day-to-day programmer. In fact, I don't even work in IT and to get all these tools installed on my work computer to do such stuff is a pain in the you know what; that is why the Web IDE is awesome.
 
