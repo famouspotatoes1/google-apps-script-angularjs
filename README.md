@@ -1,4 +1,4 @@
-# Google-Apps-Script-is-your-Buddy
+# Use AngularJS and Google Apps Script together
 You can use Google Apps Script to make a unique web application, deployed to a private URL and secured for people behind your private corporate domain, just you, or expose it to the entire web. It is up to you. You can also use almost any JavaScript framework or Library of your choice (AngularJS, Vue, Mithril, etc.), essentially anything you can add with a <script> tag is something you can use. You can also integrate it with the database of your choice, Firebase, CouchDB, etc. (these are the ones I use). You get a basic version control system and a Web-IDE to edit your code in, although it could use some serious updating.
 It is even now possible to integrate git into your workflow and edit files locally if you like.
 
